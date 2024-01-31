@@ -1,0 +1,71 @@
+{% extends 'admintemp/admin_home.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Customer Table</h4>
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>
+                            Sl No
+                          </th>
+                          <th>
+                            Name
+                          </th>
+                          <th>
+                            Age
+                          </th>
+                          <th>
+                            Gender
+                          </th>
+                          <th>
+                            Address
+                          </th>
+                          <th>
+                            Contact No.
+                          </th>
+                            <th>
+                            Delete
+                            </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for u in user %}
+                        <tr>
+                          <td class="py-1">
+                            {{forloop.counter}}
+                          </td>
+                          <td>
+                            {{u.name}}
+                          </td>
+                          <td>
+                            {{u.age}}
+                          </td>
+                          <td>
+                            {{u.gender}}
+                          </td>
+                          <td>
+                            {{u.address}}
+                          </td>
+                          <td>
+                            {{u.phone_no}}
+                          </td>
+                            <td>
+                                <form action="{% url 'delete_user' u.id %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="User" value="{{ u.id }}"/>
+                                <button type="submit" class="btn btn-outline-danger btn-fw">delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+{% endblock %}

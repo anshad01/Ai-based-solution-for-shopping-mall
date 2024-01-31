@@ -1,0 +1,32 @@
+{% extends 'userpage/user_home.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Appointment Form</h4>
+                  <form class="forms-sample" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <label>Shop</label>
+                      <input class="form-control" readonly value="{{s.shop}}">
+                    </div>
+                    <div class="form-group">
+                      <label>Date</label>
+                      <input class="form-control" readonly value="{{s.date}}">
+                    </div>
+                    <div class="form-group">
+                      <label>Start Time</label>
+                      <input class="form-control" readonly value="{{s.start_time}}">
+                    </div>
+                    <div class="form-group">
+                      <label>End Time</label>
+                        <input class="form-control" readonly value="{{s.end_time}}">
+                      </div>
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-light">Cancel</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+{% endblock %}

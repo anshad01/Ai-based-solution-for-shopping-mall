@@ -1,0 +1,72 @@
+{% extends 'shopkeeperpage/shopkeeper_home.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                {% for message in messages %}
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+        {{message}}
+    </div>
+    {% endfor %}
+                <div class="card-body">
+                  <h4 class="card-title">Schedule Table</h4>
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>
+                            Sl No
+                          </th>
+                          <th>
+                            Date
+                          </th>
+                          <th>
+                            Start Time
+                          </th>
+                          <th>
+                            End Time
+                          </th>
+                          <th>
+                            Update
+                          </th>
+                          <th>
+                            Delete
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for s in schedule %}
+                        <tr>
+                          <td class="py-1">
+                            {{forloop.counter}}
+                          </td>
+                          <td>
+                            {{s.date}}
+                          </td>
+                          <td>
+                            {{s.start_time}}
+                          </td>
+                          <td>
+                            {{s.end_time}}
+                          </td>
+                            <td>
+                              <a href="{% url 'schedule_update' s.id %}">
+                                <button type="button" class="btn btn-outline-success btn-fw">update</button>
+                              </a>
+                            </td>
+                            <td>
+                                <form action="{% url 'schedule_delete' s.id %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="Schedule" value="{{ s.id }}"/>
+                                <button type="submit" class="btn btn-outline-danger btn-fw">delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends 'userpage/user_home.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Schedule Table</h4>
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>
+                            Sl No
+                          </th>
+                            <th>
+                                Shop Name
+                            </th>
+                          <th>
+                            Date
+                          </th>
+                          <th>
+                            Start Time
+                          </th>
+                          <th>
+                            End Time
+                          </th>
+                          <th>
+                              Approval Status
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for a in a %}
+                        <tr>
+                          <td class="py-1">
+                            {{forloop.counter}}
+                          </td>
+                            <td>
+                                {{a.schedule.shop}}
+                            </td>
+                          <td>
+                            {{a.schedule.date}}
+                          </td>
+                          <td>
+                            {{a.schedule.start_time}}
+                          </td>
+                          <td>
+                            {{a.schedule.end_time}}
+                          </td>
+                            <td>
+                                {% if a.status == 0 %}
+                                <button type="button" class="btn btn-warning btn-icon-text">
+                                    <i class="typcn typcn-refresh btn-icon-prepend"></i>
+                                    Approval Pending
+                                </button>
+                                {% elif a.status == 1 %}
+                                <button type="button" class="btn btn-outline-primary btn-icon-text">
+                                    <i class="typcn typcn-folder btn-icon-prepend"></i>
+                                    Approval Confirmed
+                                </button>
+                                {% else %}
+                                <button type="button" class="btn btn-success btn-icon-text">
+                                    <i class="typcn typcn-warning btn-icon-prepend"></i>
+                                    Rejected
+                                </button>
+                                {% endif %}
+                            </td>
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+{% endblock %}

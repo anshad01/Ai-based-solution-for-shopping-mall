@@ -1,0 +1,19 @@
+{% extends 'userpage/user_home.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="col-md-4 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                    <blockquote class="blockquote blockquote-primary">
+                        <p class="text-danger">click below button to enter the shop</p>
+                        <a href="{% url 'mask_detect' %}">
+                            <button type="button" class="btn btn-primary btn-lg btn-block">
+                                <i class="typcn typcn-user"></i>
+                                Enter
+                            </button>
+                        </a>
+                    </blockquote>
+                </div>
+              </div>
+            </div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'admintemp/admin_home.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">shopkeeper register</h4>
+                  <form class="forms-sample" method="post">
+                    {% csrf_token %}
+                    {{shopkeeper_form|crispy}}
+                    {{user_form|crispy}}
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-light">Cancel</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+{% endblock %}

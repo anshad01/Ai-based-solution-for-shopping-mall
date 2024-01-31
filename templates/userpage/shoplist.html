@@ -1,0 +1,31 @@
+{% extends 'userpage/user_home.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Shops</h4>
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>Sl No</th>
+                          <th>shop Name</th>
+                          <th>shop Address</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for s in shop %}
+                        <tr>
+                          <td class="py-1">{{forloop.counter}}</td>
+                          <td>{{s.company_name}}</td>
+                          <td>{{s.address}}</td>
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+{% endblock %}
